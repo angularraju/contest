@@ -9,7 +9,7 @@ The repository has the following folders each of which denotes one problem
 ## Instructions
 - Fork this repo to a private repository and give access to that repo to lalitjairaj@gmail.com
 - Each problem folder contains a markdown file 
-- The markdown file defines the problem that needs to be solved along with any special
-- The solution to the problem should be checked into the solution folder under the Problem folder. 
+- The markdown file defines the problem that needs to be solved along with any special instructions
+- The **Solution** to the problem should be checked into the solution folder under the Problem folder. 
 - The **Presentation** should be checked into the folder named presentation under the problem folder.
-- Add another markdown file (.md) called ReadMe.md in the solution folder. This should document the instructions to install and run the solution locally.
+- Add another markdown file (.md) called **ReadMe.md** in the solution folder. This should document the instructions to install and run the solution locally.
