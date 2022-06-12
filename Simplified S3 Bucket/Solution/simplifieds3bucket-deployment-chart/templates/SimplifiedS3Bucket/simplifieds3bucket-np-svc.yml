@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "simplifieds3bucket-deployment-chart.fullname" .}}-s3bucket-np-svc
+  labels:
+    {{- include "simplifieds3bucket-deployment-chart.labels" . | nindent 4 }}
+    {{ include "simplifieds3bucket-selector.labels" . | nindent 4 }}
+spec:
+  type: NodePort
+  ports:
+  - name: external
+    port: {{ .Values.ports.clusterIpPort }}
+    targetPort: {{ .Values.ports.nodeTargetPort }}
+    nodePort: {{ .Values.ports.nodePort }}
+  selector:  
+    {{ include "simplifieds3bucket-selector.labels" . | nindent 4 }}

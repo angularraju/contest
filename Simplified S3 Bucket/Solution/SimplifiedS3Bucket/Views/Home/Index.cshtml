@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    string? fileName = Convert.ToString(ViewData["fileName"]);
+}
+<h1>Upload Files</h1>
+<div class="row">
+    <section>
+       <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Index">
+        <div class="form-group">
+            <div class="col-md-10">
+                <p><b>Only text file of size upto 1 kb allowed to upload.</b> <br /></p>
+                <input type="file" name="postedFiles" required />
+                <br/>
+            </div>
+            <div class="col-md-10">
+                <input type="submit" value="Upload" />
+            </div>
+        </div>
+        <br/>
+        <span>@Html.Raw(Convert.ToString(ViewData["Message"]))</span>
+    </form>
+    </section>
+    @if(!string.IsNullOrEmpty(@fileName))
+    {
+        <div>
+            <p style="margin-top: 50px">Download file</p>
+            <a asp-action="Get" asp-route-filename="@fileName">@fileName</a>
+        </div>
+    }
+</div>

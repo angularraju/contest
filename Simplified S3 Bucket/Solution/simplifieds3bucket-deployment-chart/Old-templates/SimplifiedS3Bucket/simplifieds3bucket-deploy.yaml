@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "simplifieds3bucket-deployment-chart.fullname" .}}-s3bucket-deployment
+  labels:
+    {{- include "simplifieds3bucket-deployment-chart.labels" . | nindent 4 }}
+    {{ include "simplifieds3bucket-selector.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels: 
+      {{ include "simplifieds3bucket-selector.labels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "simplifieds3bucket-deployment-chart.labels" . | nindent 8 }}
+        {{ include "simplifieds3bucket-selector.labels" . | nindent 8 }}
+    spec:
+      containers:
+      - image: {{ .Values.simplifiedS3Bucket.image }}
+        name: {{ .Values.simplifiedS3Bucket.name }}
+        volumeMounts:
+          - name: {{ .Values.volumeMounts.name }}
+            mountPath: {{ .Values.volumeMounts.mountPath }}
+        ports:
+        - containerPort: {{ .Values.ports.containerPort }}
+        env:
+        - name: FILE_PATH
+          value: {{ .Values.volumeMounts.mountPath }}
+      volumes:
+      - name: {{ .Values.volumeMounts.name }}
+        emptyDir: {}

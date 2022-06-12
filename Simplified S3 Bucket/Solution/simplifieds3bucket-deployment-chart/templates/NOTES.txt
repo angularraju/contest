@@ -1,0 +1,2 @@
+- Service is accessible at 
+  http://localhost:{{ .Values.ports.nodePort }}
